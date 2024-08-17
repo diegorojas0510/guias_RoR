@@ -14,10 +14,36 @@ puts Person.new
 # Ejemplo:
 
 class Person
-  def greet
-    "Hola"
+
+  # usango los getter y setter con un atajo de ruby de lo contrario se debe crear un método que se llame igual a la variable para ser leido desde afuera
+  # y otro para que pueda ser modificado desde afura
+  attr_accessor :name
+  # constructor
+  def initialize(name)
+    # usando variables de instancia se identifican con el @
+    @name = name
+    puts "Método que se ejecuta cuando se crea un nuevo objeto con .new"
+    puts "Creando un nuevo objeto pero esta vez con argumentos: #{name}"
+  end
+
+  def greet(other_person_name)
+    "Hola #{other_person_name}, me llamo #{@name}"
+
   end
   def greet2
     "Nuevo Saludo"
+    secret_method
   end
+
+  # métodos privados
+  private
+  def secret_method
+    puts "Esto es un método privado"
+  end
+
 end
+
+person1= Person.new("Juan")
+person2= Person.new("Maria")
+puts person1.greet("Otro nombre")
+puts person1.greet2
